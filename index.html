@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quotiland - Battery ROI Calculator for Solar & Energy Storage</title>
+  <title>Quotiland - Battery ROI Calculator for Solar &amp; Energy Storage</title>
   <meta name="description" content="Calculate accurate savings and return on investment for home battery storage. Get location-based solar production estimates, consumption analysis, and ROI reports." />
   <meta name="author" content="Quotiland" />
   
-  <meta property="og:title" content="Quotiland - Battery ROI Calculator for Solar & Energy Storage" />
+  <meta property="og:title" content="Quotiland - Battery ROI Calculator for Solar &amp; Energy Storage" />
   <meta property="og:description" content="Calculate accurate savings and return on investment for home battery storage. Get location-based solar production estimates, consumption analysis, and ROI reports." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
@@ -16,11 +16,16 @@
   <meta name="twitter:site" content="@lovable_dev" />
   <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
+  <!-- Content-Security-Policy meta for GitHub Pages to allow Google Forms embedding -->
+  <!-- GitHub Pages doesn't let you add server headers, so we use a meta CSP. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: 'unsafe-inline'; frame-src https://docs.google.com https://docs.googleusercontent.com; child-src https://docs.google.com https://docs.googleusercontent.com;">
+  <!-- End CSP meta -->
+
   <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-X0CFBL4TDZ"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag(){dataLayer.push(arguments);} 
     gtag('js', new Date());
 
     gtag('config', 'G-X0CFBL4TDZ');
@@ -351,6 +356,33 @@
         font-size: 1.5rem;
       }
     }
+
+    /* Responsive embed wrapper for Google Forms iframe */
+    .form-embed {
+      width: 100%;
+      /* Use an aspect ratio or fixed height. Google Forms often needs more vertical space. */
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 fallback */
+      height: 0;
+      overflow: hidden;
+      border-radius: 0.5rem;
+      box-shadow: var(--shadow-sm);
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .form-embed iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* If you prefer a taller form on desktop, increase min-height */
+    @media (min-width: 768px) {
+      .form-embed { padding-bottom: 75%; } /* taller aspect on larger screens */
+    }
   </style>
 </head>
 
@@ -453,7 +485,7 @@
           </div>
           <h3 class="card-title">Option 1: Solar + Battery</h3>
           <p class="card-description">
-            You'll need to provide details about your planned solar system: panel capacity (kW), panel orientation, and roof specifications. We'll calculate how much energy your panels will generate and how your battery can maximize your savings by storing excess solar production.
+            You'll need to provide details about your planned solar system: panel capacity (kW), panel orientation, and roof specifications. We'll calculate how much energy your panels will generate a[...] 
           </p>
         </div>
 
@@ -467,7 +499,7 @@
           </div>
           <h3 class="card-title">Option 2: Battery Only</h3>
           <p class="card-description">
-            Provide information about the battery system you're considering: capacity (kWh), power output (kW), and charging/discharging efficiency. We'll show you how a standalone battery can reduce your costs by charging during off-peak periods and discharging during peak times.
+            Provide information about the battery system you're considering: capacity (kWh), power output (kW), and charging/discharging efficiency. We'll show you how a standalone battery can reduce [...] 
           </p>
         </div>
       </div>
@@ -540,20 +572,33 @@
           Be the first to access our battery ROI calculator. Sign up for early access and launch notifications.
         </p>
         
-        <form action="https://formspree.io/f/xzzjywag" method="POST">
-          <div class="form-group">
-            <label class="form-label" for="email">Email Address</label>
-            <input 
-              type="email" 
-              id="email" 
-              name="email" 
-              class="form-input" 
-              placeholder="your@email.com" 
-              required 
-            />
-          </div>
-          <button type="submit" class="btn btn-primary">Notify Me at Launch</button>
-        </form>
+        <!--
+          Google Forms embed (replaced Formspree):
+          Using the URL you provided — embedded iframe is used inside the responsive wrapper.
+        -->
+        <div class="form-embed" aria-hidden="false">
+          <iframe
+            src="https://docs.google.com/forms/d/e/1FAIpQLSedOkaIqmBx3OoWZcQl1fklT7GKtJIJolhqKClFeSuI7nHC0w/viewform?embedded=true"
+            title="Quotiland early access form"
+            loading="lazy"
+          >
+            Loading…
+          </iframe>
+        </div>
+
+        <!-- Fallback / alternative: open the form in a new tab -->
+        <p style="margin-top: 0.5rem; color: hsl(var(--muted-foreground)); font-size: 0.9rem;">
+          Or open the form in a new tab:
+        </p>
+        <a 
+          href="https://docs.google.com/forms/d/e/1FAIpQLSedOkaIqmBx3OoWZcQl1fklT7GKtJIJolhqKClFeSuI7nHC0w/viewform"
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="btn btn-primary"
+          style="margin-top:0.5rem;"
+        >
+          Open Sign-up Form
+        </a>
       </div>
     </div>
   </section>
