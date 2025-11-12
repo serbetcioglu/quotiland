@@ -1,154 +1,613 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Savingnite – Smarter Energy Investment</title>
+  <title>Quotiland - Battery ROI Calculator for Solar &amp; Energy Storage</title>
+  <meta name="description" content="Calculate accurate savings and return on investment for home battery storage. Get location-based solar production estimates, consumption analysis, and ROI reports." />
+  <meta name="author" content="Quotiland" />
+  
+  <meta property="og:title" content="Quotiland - Battery ROI Calculator for Solar &amp; Energy Storage" />
+  <meta property="og:description" content="Calculate accurate savings and return on investment for home battery storage. Get location-based solar production estimates, consumption analysis, and ROI reports." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@lovable_dev" />
+  <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+  <!-- Content-Security-Policy meta for GitHub Pages to allow Google Forms embedding -->
+  <!-- GitHub Pages doesn't let you add server headers, so we use a meta CSP. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: 'unsafe-inline'; frame-src https://docs.google.com https://docs.googleusercontent.com; child-src https://docs.google.com https://docs.googleusercontent.com;">
+  <!-- End CSP meta -->
+
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X0CFBL4TDZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('js', new Date());
+
+    gtag('config', 'G-X0CFBL4TDZ');
+  </script>
+  <!-- End Google Analytics -->
+  
   <style>
-    body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background: linear-gradient(180deg, #f0f9ff 0%, #e0f7ef 100%);
-      color: #1a1a1a;
+    /* CSS Reset and Base Styles */
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+    
+    :root {
+      /* Colors - HSL values */
+      --primary: 142 69% 41%;
+      --primary-foreground: 0 0% 100%;
+      --secondary: 196 92% 42%;
+      --secondary-foreground: 0 0% 100%;
+      --accent: 47 91% 57%;
+      --accent-foreground: 0 0% 9%;
+      --background: 0 0% 100%;
+      --foreground: 0 0% 9%;
+      --card: 0 0% 100%;
+      --card-foreground: 0 0% 9%;
+      --muted: 0 0% 96%;
+      --muted-foreground: 0 0% 45%;
+      --border: 0 0% 90%;
+      --input: 0 0% 90%;
+      --ring: 142 69% 41%;
+      
+      /* Gradients */
+      --gradient-primary: linear-gradient(135deg, hsl(142 69% 41%), hsl(196 92% 42%));
+      --gradient-hero: linear-gradient(180deg, hsl(142 69% 41% / 0.05), hsl(196 92% 42% / 0.05));
+      
+      /* Shadows */
+      --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.05);
+      --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.1);
+      --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.1);
+      --shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.1);
+      
+      /* Transitions */
+      --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+      line-height: 1.6;
+      color: hsl(var(--foreground));
+      background: hsl(var(--background));
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    /* Hero Section */
+    .hero-section {
+      position: relative;
+      min-height: 600px;
       display: flex;
-      flex-direction: column;
       align-items: center;
+      background: var(--gradient-hero);
+      overflow: hidden;
+    }
+    
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.15;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      padding: 4rem 0;
       text-align: center;
     }
-
-    header {
-      padding: 4rem 1rem 2rem;
-    }
-
-    h1 {
+    
+    .hero-title {
       font-size: 2.5rem;
-      color: #00784a;
-      margin-bottom: 0.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-
-    p.subtitle {
-      font-size: 1.1rem;
-      color: #444;
-      max-width: 600px;
-      margin: 0 auto 2rem;
+    
+    .hero-description {
+      font-size: 1.25rem;
+      color: hsl(var(--muted-foreground));
+      margin-bottom: 2rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
     }
-
-    section.features {
-      display: flex;
-      flex-wrap: wrap;
+    
+    /* Button Styles */
+    .btn {
+      display: inline-flex;
+      align-items: center;
       justify-content: center;
-      gap: 1.5rem;
-      max-width: 900px;
-      margin: 2rem auto;
+      gap: 0.5rem;
+      padding: 0.75rem 2rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border-radius: 0.375rem;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      text-decoration: none;
     }
-
-    .feature {
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      padding: 1.5rem;
-      flex: 1 1 250px;
-      max-width: 280px;
+    
+    .btn-hero {
+      background: var(--gradient-primary);
+      color: hsl(var(--primary-foreground));
+      box-shadow: var(--shadow-lg);
+      font-size: 1rem;
+      padding: 1rem 2.5rem;
     }
-
-    .feature h3 {
-      color: #00784a;
+    
+    .btn-hero:hover {
+      opacity: 0.9;
+      box-shadow: var(--shadow-xl);
+      transform: translateY(-2px);
     }
-
-    .feature span {
+    
+    .btn-primary {
+      background: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+    }
+    
+    .btn-primary:hover {
+      background: hsl(var(--primary) / 0.9);
+    }
+    
+    /* Section Styles */
+    .section {
+      padding: 5rem 0;
+    }
+    
+    .section-title {
       font-size: 2rem;
-      display: block;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    
+    .section-description {
+      text-align: center;
+      color: hsl(var(--muted-foreground));
+      margin-bottom: 3rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    /* Card Grid */
+    .card-grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: 1fr;
+    }
+    
+    @media (min-width: 768px) {
+      .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .card-grid.three-col {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    /* Card Styles */
+    .card {
+      background: hsl(var(--card));
+      border: 1px solid hsl(var(--border));
+      border-radius: 0.5rem;
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition-smooth);
+    }
+    
+    .card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+      border-color: hsl(var(--primary) / 0.3);
+    }
+    
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    
+    .card-icon.primary {
+      background: hsl(var(--primary) / 0.1);
+      color: hsl(var(--primary));
+    }
+    
+    .card-icon.secondary {
+      background: hsl(var(--secondary) / 0.1);
+      color: hsl(var(--secondary));
+    }
+    
+    .card-icon.accent {
+      background: hsl(var(--accent) / 0.1);
+      color: hsl(var(--accent));
+    }
+    
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
       margin-bottom: 0.5rem;
     }
-
-    form {
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      padding: 2rem;
-      max-width: 400px;
-      margin: 2rem auto;
+    
+    .card-description {
+      color: hsl(var(--muted-foreground));
+      font-size: 0.875rem;
+      line-height: 1.5;
     }
-
-    input[type="email"] {
-      padding: 0.8rem;
-      width: 80%;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+    
+    /* CTA Section */
+    .cta-section {
+      background: var(--gradient-hero);
+      padding: 4rem 0;
+    }
+    
+    .cta-content {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .cta-badge {
+      display: inline-block;
+      background: hsl(var(--accent));
+      color: hsl(var(--accent-foreground));
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 600;
       margin-bottom: 1rem;
-      font-size: 1rem;
+    }
+    
+    /* Form Styles */
+    .form-group {
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+    
+    .form-label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    
+    .form-input {
+      width: 100%;
+      padding: 0.625rem 0.75rem;
+      font-size: 0.875rem;
+      border: 1px solid hsl(var(--input));
+      border-radius: 0.375rem;
+      background: hsl(var(--background));
+      transition: var(--transition-smooth);
+    }
+    
+    .form-input:focus {
+      outline: none;
+      border-color: hsl(var(--ring));
+      box-shadow: 0 0 0 2px hsl(var(--ring) / 0.2);
+    }
+    
+    /* Footer */
+    .footer {
+      padding: 2rem 0;
+      text-align: center;
+      border-top: 1px solid hsl(var(--border));
+      color: hsl(var(--muted-foreground));
+      font-size: 0.875rem;
+    }
+    
+    /* SVG Icons */
+    .icon {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+    
+    /* Responsive Typography */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2rem;
+      }
+      
+      .hero-description {
+        font-size: 1rem;
+      }
+      
+      .section-title {
+        font-size: 1.5rem;
+      }
     }
 
-    button {
-      background: #00784a;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      padding: 0.8rem 1.5rem;
-      font-size: 1rem;
-      cursor: pointer;
+    /* Responsive embed wrapper for Google Forms iframe */
+    .form-embed {
+      width: 100%;
+      /* Use an aspect ratio or fixed height. Google Forms often needs more vertical space. */
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 fallback */
+      height: 0;
+      overflow: hidden;
+      border-radius: 0.5rem;
+      box-shadow: var(--shadow-sm);
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .form-embed iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
     }
 
-    button:hover {
-      background: #00693f;
-    }
-
-    footer {
-      margin: 3rem 0 1rem;
-      color: #666;
-      font-size: 0.9rem;
+    /* If you prefer a taller form on desktop, increase min-height */
+    @media (min-width: 768px) {
+      .form-embed { padding-bottom: 75%; } /* taller aspect on larger screens */
     }
   </style>
 </head>
+
 <body>
-
-  <header>
-    <h1>Savingnite ⚡</h1>
-    <p class="subtitle">
-      We’re building a tool that helps homeowners understand the real return on investment of their solar batteries.
-    </p>
-  </header>
-
-  <section class="features">
-    <div class="feature">
-      <span>💡</span>
-      <h3>Energy Contract Details</h3>
-      <p>Enter your tariff, pricing model, or dynamic energy contract details.</p>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-bg">
+      <img src="src/assets/hero-battery.jpg" alt="Battery Storage Hero" />
     </div>
-    <div class="feature">
-      <span>📍</span>
-      <h3>Home Address</h3>
-      <p>We’ll use your location to estimate your region’s solar production potential.</p>
-    </div>
-    <div class="feature">
-      <span>⚙️</span>
-      <h3>Consumption Data</h3>
-      <p>Input or easily select your household energy consumption profile.</p>
-    </div>
-    <div class="feature">
-      <span>🔋</span>
-      <h3>Solar & Battery Setup</h3>
-      <p>Add your solar system info and your battery installation quote.</p>
-    </div>
-    <div class="feature">
-      <span>📊</span>
-      <h3>ROI & Savings</h3>
-      <p>Our model will calculate how much you can save and when your investment pays off.</p>
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">Calculate Your Battery ROI with Precision with Quotiland!</h1>
+        <p class="hero-description">
+          Discover exactly how much you'll save with battery storage. Get detailed, location-specific analysis for solar + battery or battery-only systems.
+        </p>
+        <a href="#cta" class="btn btn-hero">Get Early Access</a>
+      </div>
     </div>
   </section>
 
-  <form action="https://formspree.io/f/xzzjywag" method="POST">
-    <h3>Stay Updated</h3>
-    <p>Get notified when the tool launches:</p>
-    <input type="email" name="email" placeholder="Your email address" required />
-    <br />
-    <button type="submit">Notify Me</button>
-  </form>
+  <!-- Enter Your Details Section -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Enter Your Details</h2>
+      <p class="section-description">
+        To get started, we'll need some basic information about your energy usage and location.
+      </p>
+      
+      <div class="card-grid three-col">
+        <!-- Energy Contract Card -->
+        <div class="card">
+          <div class="card-icon primary">
+            <svg class="icon" viewBox="0 0 24 24">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+          </div>
+          <h3 class="card-title">Energy Contract Details</h3>
+          <p class="card-description">
+            Your current electricity rates, including time-of-use periods and any feed-in tariffs.
+          </p>
+        </div>
 
-  <footer>
-    © 2025 Savingnite – Smarter Energy Decisions
+        <!-- Home Address Card -->
+        <div class="card">
+          <div class="card-icon secondary">
+            <svg class="icon" viewBox="0 0 24 24">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </div>
+          <h3 class="card-title">Home Address</h3>
+          <p class="card-description">
+            Your location helps us calculate accurate solar production estimates based on local weather patterns.
+          </p>
+        </div>
+
+        <!-- Energy Consumption Card -->
+        <div class="card">
+          <div class="card-icon accent">
+            <svg class="icon" viewBox="0 0 24 24">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+          <h3 class="card-title">Energy Consumption</h3>
+          <p class="card-description">
+            Upload your energy bills or smart meter data to understand your usage patterns.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Choose Your Scenario Section -->
+  <section class="section" style="background: hsl(var(--muted));">
+    <div class="container">
+      <h2 class="section-title">Choose Your Scenario</h2>
+      <p class="section-description">
+        Select whether you're considering solar panels with a battery, or just a battery storage system.
+      </p>
+      
+      <div class="card-grid">
+        <!-- Option 1: Solar + Battery -->
+        <div class="card">
+          <div class="card-icon primary">
+            <svg class="icon" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </div>
+          <h3 class="card-title">Option 1: Solar + Battery</h3>
+          <p class="card-description">
+            You'll need to provide details about your planned solar system: panel capacity (kW), panel orientation, and roof specifications. We'll calculate how much energy your panels will generate a[...] 
+          </p>
+        </div>
+
+        <!-- Option 2: Battery Only -->
+        <div class="card">
+          <div class="card-icon secondary">
+            <svg class="icon" viewBox="0 0 24 24">
+              <rect x="1" y="6" width="18" height="12" rx="2" ry="2"></rect>
+              <line x1="23" y1="13" x2="23" y2="11"></line>
+            </svg>
+          </div>
+          <h3 class="card-title">Option 2: Battery Only</h3>
+          <p class="card-description">
+            Provide information about the battery system you're considering: capacity (kWh), power output (kW), and charging/discharging efficiency. We'll show you how a standalone battery can reduce [...] 
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What to Expect Section -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">What to Expect as Results</h2>
+      <p class="section-description">
+        Our calculator provides comprehensive analysis to help you make an informed decision.
+      </p>
+      
+      <div class="card-grid three-col">
+        <!-- Solar Production Card -->
+        <div class="card">
+          <div class="card-icon primary">
+            <svg class="icon" viewBox="0 0 24 24">
+              <rect x="1" y="3" width="15" height="13"></rect>
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+              <circle cx="5.5" cy="18.5" r="2.5"></circle>
+              <circle cx="18.5" cy="18.5" r="2.5"></circle>
+            </svg>
+          </div>
+          <h3 class="card-title">Solar Production Estimates</h3>
+          <p class="card-description">
+            Detailed hourly solar generation forecasts based on your location, panel specifications, and historical weather data.
+          </p>
+        </div>
+
+        <!-- Consumption Reduction Card -->
+        <div class="card">
+          <div class="card-icon secondary">
+            <svg class="icon" viewBox="0 0 24 24">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+              <polyline points="17 6 23 6 23 12"></polyline>
+            </svg>
+          </div>
+          <h3 class="card-title">Consumption & Grid Reduction</h3>
+          <p class="card-description">
+            Analysis of how the battery will reduce your grid consumption and shift your usage to optimize savings.
+          </p>
+        </div>
+
+        <!-- Savings Report Card -->
+        <div class="card">
+          <div class="card-icon accent">
+            <svg class="icon" viewBox="0 0 24 24">
+              <line x1="12" y1="1" x2="12" y2="23"></line>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+          </div>
+          <h3 class="card-title">Savings & ROI Report</h3>
+          <p class="card-description">
+            Complete financial breakdown including annual savings, payback period, and 20-year ROI projections.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section" id="cta">
+    <div class="container">
+      <div class="cta-content">
+        <span class="cta-badge">Coming Soon</span>
+        <h2 class="section-title">Get Notified When We Launch</h2>
+        <p class="section-description">
+          Be the first to access our battery ROI calculator. Sign up for early access and launch notifications.
+        </p>
+        
+        <!--
+          Google Forms embed (replaced Formspree):
+          Using the URL you provided — embedded iframe is used inside the responsive wrapper.
+        -->
+        <div class="form-embed" aria-hidden="false">
+          <iframe
+            src="https://docs.google.com/forms/d/e/1FAIpQLSedOkaIqmBx3OoWZcQl1fklT7GKtJIJolhqKClFeSuI7nHC0w/viewform?embedded=true"
+            title="Quotiland early access form"
+            loading="lazy"
+          >
+            Loading…
+          </iframe>
+        </div>
+
+        <!-- Fallback / alternative: open the form in a new tab -->
+        <p style="margin-top: 0.5rem; color: hsl(var(--muted-foreground)); font-size: 0.9rem;">
+          Or open the form in a new tab:
+        </p>
+        <a 
+          href="https://docs.google.com/forms/d/e/1FAIpQLSedOkaIqmBx3OoWZcQl1fklT7GKtJIJolhqKClFeSuI7nHC0w/viewform"
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="btn btn-primary"
+          style="margin-top:0.5rem;"
+        >
+          Open Sign-up Form
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Quotiland. Empowering smart energy decisions.</p>
+    </div>
   </footer>
-
 </body>
 </html>
