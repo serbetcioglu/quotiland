@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quotiland - Battery Storage ROI Calculator</title>
+    <title>Quotiland - Calculate your savings yourself</title>
     <meta name="description" content="Calculate your battery storage ROI with accurate solar production estimates, consumption reduction analysis, and detailed savings reports.">
     <style>
         /* CSS Reset and Base Styles */
@@ -180,6 +180,7 @@
         .section-description {
             font-size: 1.125rem;
             color: hsl(var(--muted-foreground));
+            margin-bottom: 2rem;
         }
 
         /* Cards */
@@ -380,11 +381,13 @@
         <div class="hero-bg"></div>
         <div class="hero-gradient"></div>
         <div class="hero-content">
-            <h1>Calculate Your Battery Storage ROI</h1>
+            <h1>Calculate your savings yourself!</h1>
             <p class="hero-description">
-                Whether you're adding batteries to existing solar panels or evaluating a complete solar + battery system, get accurate ROI calculations based on your specific situation.
+                Discover exactly how much you'll save. 
+                Make your own analysis however you like; quick & simple, or in full detail.
+                Calculate your actual savings and ROI.
             </p>
-            <a href="#signup" class="btn">Get Early Access</a>
+            <a href="#signup" class="btn">Keep me posted!</a>
         </div>
     </section>
 
@@ -393,7 +396,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>Enter Your Details</h2>
-                <p class="section-description">Start by providing your basic energy information</p>
+                <p class="section-description">You'll provide your basic energy information</p>
             </div>
             <div class="card-grid">
                 <div class="card">
@@ -407,24 +410,12 @@
                                 <path d="M16 17H8"/>
                             </svg>
                         </div>
-                        <h3>Energy Contract</h3>
+                        <h3>Your energy contract</h3>
                     </div>
-                    <p class="card-text">Your current rates and tariff structure</p>
+                    <p class="card-text">Enter your contract details for electricity rates, tariff brackets and any feed-in tariffs. Or simply upload your contract and we figure out the rest!</p>
                 </div>
 
-                <div class="card">
-                    <div class="card-header">
-                        <div class="icon-wrapper icon-primary">
-                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/>
-                                <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                            </svg>
-                        </div>
-                        <h3>Home Address</h3>
-                    </div>
-                    <p class="card-text">Optional - for accurate solar production estimates with local weather data</p>
-                </div>
-
+                <!-- Energy Consumption Card -->
                 <div class="card">
                     <div class="card-header">
                         <div class="icon-wrapper icon-primary">
@@ -436,10 +427,41 @@
                                 <path d="M12 22v-3"/>
                             </svg>
                         </div>
-                        <h3>Energy Consumption</h3>
+                        <h3>Your consumption</h3>
                     </div>
-                    <p class="card-text">Your monthly or annual energy usage patterns</p>
+                    <p class="card-text">Choose from our consumption templates that suits your profile the best. Do you have the exact consumption data? Even better! Just upload it and get more accurate & advanved insights.</p>
                 </div>
+
+                <!-- Home Address Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon-wrapper icon-primary">
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/>
+                                <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                            </svg>
+                        </div>
+                        <h3>Your address</h3>
+                    </div>
+                    <!--
+                     <p class="card-text">
+                        Already have solar panels? Enter your existing solar setup and battery quote to calculate ROI for adding storage.
+                    </p>
+                    -->
+                    <ul class="bullet-list">
+                        <li>
+                            <span class="bullet bullet-primary"></span>
+                            <span>Looking for the best possible accuracy? Enter your address and we'll calculate solar energy estimations specific to you!</span>
+                        </li>
+                        <li>
+                            <span class="bullet bullet-primary"></span>
+                            <span>Want to keep your address to yourself? Just enter your city.</span>
+                        </li>
+                    </ul>
+
+                </div>
+
+
             </div>
         </div>
     </section>
@@ -448,8 +470,8 @@
     <section>
         <div class="container">
             <div class="section-header">
-                <h2>Choose Your Scenario</h2>
-                <p class="section-description">Tell us what you're evaluating</p>
+                <h2>What do you want to do?</h2>
+                <p class="section-description">Select whether you're considering solar panels with a battery, or just a battery storage system.</p>
             </div>
             <div class="card-grid card-grid-2">
                 <div class="card card-large">
@@ -467,11 +489,12 @@
                                 <path d="m19.07 4.93-1.41 1.41"/>
                             </svg>
                         </div>
-                        <h3>Option 1: Solar + Battery</h3>
+                        <h3>I want to add both solar panels and a battery to my house</h3>
                     </div>
                     <p class="card-text">
-                        Don't have solar panels yet? Enter quotes for both solar panels and battery installation to see the complete ROI.
+                        Enter the quote details for both, set back and relax! You'll learn everything you need to decide on your quote.
                     </p>
+                    <!--
                     <ul class="bullet-list">
                         <li>
                             <span class="bullet bullet-secondary"></span>
@@ -482,6 +505,7 @@
                             <span>Battery storage quote details</span>
                         </li>
                     </ul>
+                    -->
                 </div>
 
                 <div class="card card-large">
@@ -492,11 +516,12 @@
                                 <line x1="22" x2="22" y1="11" y2="13"/>
                             </svg>
                         </div>
-                        <h3>Option 2: Battery Only</h3>
+                        <h3>I only want a battery</h3>
                     </div>
                     <p class="card-text">
-                        Already have solar panels? Enter your existing solar setup and battery quote to calculate ROI for adding storage.
+                        Enter the details of both your existing solar system and the battery quote. Then again, set back, and relax!
                     </p>
+                    <!--
                     <ul class="bullet-list">
                         <li>
                             <span class="bullet bullet-primary"></span>
@@ -507,6 +532,7 @@
                             <span>Battery storage quote details</span>
                         </li>
                     </ul>
+                    -->
                 </div>
             </div>
         </div>
@@ -516,11 +542,11 @@
     <section class="section-bg">
         <div class="container">
             <div class="section-header">
-                <h2>What to Expect as Results</h2>
-                <p class="section-description">Get a comprehensive analysis tailored to your situation</p>
+                <h2>See everything you need to know</h2>
+                <p class="section-description">Everything is transparent, simply put, and tailored to you! This is a big decision, and you deserve that.</p>
             </div>
-            <div class="card-grid">
-                <div class="card">
+            <div class="card-grid card-grid-2">
+                <div class="card card-large">
                     <div class="card-header">
                         <div class="icon-wrapper icon-primary">
                             <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -535,25 +561,24 @@
                                 <path d="m19.07 4.93-1.41 1.41"/>
                             </svg>
                         </div>
-                        <h3>Solar Production Estimate</h3>
+                        <h3>Check your forecasts</h3>
                     </div>
+                    <p class="card-text">
+                        Your address, your consumption profile, your solar/battery system. We have everything to calculate what will really happen in the future, and that you'll get. 
+                    </p>
                     <ul class="bullet-list">
                         <li>
                             <span class="bullet bullet-primary"></span>
-                            <span>Location-based yearly solar energy production calculations</span>
+                            <span>How much energy I can generate when?</span>
                         </li>
                         <li>
                             <span class="bullet bullet-primary"></span>
-                            <span>Real weather data analysis for your specific area</span>
-                        </li>
-                        <li>
-                            <span class="bullet bullet-primary"></span>
-                            <span>Accurate energy generation forecasts</span>
+                            <span>How effectively will I use my battery?</span>
                         </li>
                     </ul>
                 </div>
 
-                <div class="card">
+                <div class="card card-large">
                     <div class="card-header">
                         <div class="icon-wrapper icon-secondary">
                             <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -561,25 +586,28 @@
                                 <path d="M22 2 11 13"/>
                             </svg>
                         </div>
-                        <h3>Consumption Reduction</h3>
+                        <h3>See your potential savings and ROI</h3>
                     </div>
+                    <p class="card-text">
+                        Day by day, month by month, you'll be able to clearly see what you'll save, how you'll save.
+                    </p>
                     <ul class="bullet-list">
                         <li>
                             <span class="bullet bullet-secondary"></span>
-                            <span>Track annual energy consumption decrease</span>
+                            <span>How much am I actually paying for grid feed-in?</span>
                         </li>
                         <li>
                             <span class="bullet bullet-secondary"></span>
-                            <span>Battery storage optimization analysis</span>
+                            <span>How might my annual savings change over the years?</span>
                         </li>
                         <li>
                             <span class="bullet bullet-secondary"></span>
-                            <span>Usage pattern insights and recommendations</span>
+                            <span>What is my true payback period?</span>
                         </li>
                     </ul>
                 </div>
 
-                <div class="card">
+                <div class="card card-large">
                     <div class="card-header">
                         <div class="icon-wrapper icon-accent">
                             <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -587,20 +615,52 @@
                                 <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
                             </svg>
                         </div>
-                        <h3>Savings & ROI Report</h3>
+                        <h3>Compare different scenarios</h3>
                     </div>
+                    <p class="card-text">
+                        Your energy contract, consumption, production, storage: all of these can change. But it's not easy to consider all at once. Well, not until Quotiland!
+                    </p>
                     <ul class="bullet-list">
                         <li>
                             <span class="bullet bullet-accent"></span>
-                            <span>Detailed annual savings breakdown</span>
+                            <span>What if I switch to another energy contract?</span>
                         </li>
                         <li>
                             <span class="bullet bullet-accent"></span>
-                            <span>Clear payback period calculation</span>
+                            <span>What if I add more panels?</span>
                         </li>
                         <li>
                             <span class="bullet bullet-accent"></span>
-                            <span>Total return on investment for your battery system</span>
+                            <span>What if I decrease the battery capacity?</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card card-large">
+                    <div class="card-header">
+                        <div class="icon-wrapper icon-accent">
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" x2="12" y1="2" y2="22"/>
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                            </svg>
+                        </div>
+                        <h3>Get expert suggestions</h3>
+                    </div>
+                    <p class="card-text">
+                        Companies aim to sell. Of course this doesn't mean that they try to deceive you, but their suggestions cannot be independent by nature.
+                    </p>
+                    <ul class="bullet-list">
+                        <li>
+                            <span class="bullet bullet-accent"></span>
+                            <span>What's the correct battery size for me? Should I even have one?</span>
+                        </li>
+                        <li>
+                            <span class="bullet bullet-accent"></span>
+                            <span>How many panels should I have?</span>
+                        </li>
+                        <li>
+                            <span class="bullet bullet-accent"></span>
+                            <span>How should I use my battery?</span>
                         </li>
                     </ul>
                 </div>
@@ -624,14 +684,14 @@
                     <path d="M12 18h.01"/>
                     <path d="M8 18h.01"/>
                 </svg>
-                <h2>Coming Soon</h2>
+                <h2>All of these are coming soon!</h2>
                 <p class="section-description">
-                    We're putting the finishing touches on our battery ROI calculator. Sign up to be notified when we launch and get priority access to the tool.
+                    Are you interested? Leave us your email below! We'll keep you in the loop while working hard on delivering all of these to you.
                 </p>
                 <form action="https://formspree.io/f/xzzjywag" method="POST">
                     <div class="form-row">
                         <input type="email" name="email" placeholder="Enter your email" required>
-                        <button type="submit" class="btn">Notify Me</button>
+                        <button type="submit" class="btn">Keep me posted!</button>
                     </div>
                 </form>
             </div>
@@ -641,7 +701,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>© 2025 Quotiland. Making clean energy accessible and affordable.</p>
+            <p>© 2025 Quotiland. Transparency for everyone.</p>
         </div>
     </footer>
 </body>
