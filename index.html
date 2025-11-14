@@ -39,6 +39,8 @@
             --border: 210 20% 90%;
             --input: 210 20% 90%;
             --ring: 142 76% 36%;
+            --purple1: 277 70% 35%;
+            --yellow1: 28 91% 52%; 
         }
 
         body {
@@ -104,7 +106,7 @@
             position: relative;
             padding: 6rem 1rem;
             text-align: center;
-            max-width: 70rem;
+            max-width: 75rem;
             margin: 0 auto;
         }
 
@@ -131,7 +133,7 @@
             font-size: 1.125rem;
             color: hsl(215deg 13.95% 23.62%);
             margin-bottom: 2rem;
-            max-width: 42rem;
+            max-width: 50rem;
             margin-left: auto;
             margin-right: auto;
         }
@@ -169,7 +171,7 @@
         .section-header {
             text-align: center;
             margin-bottom: 4rem;
-            max-width: 48rem;
+            max-width: 60rem;
             margin-left: auto;
             margin-right: auto;
         }
@@ -197,7 +199,7 @@
         .card-grid {
             display: grid;
             gap: 1.5rem;
-            max-width: 64rem;
+            max-width: 80rem;
             margin: 0 auto;
         }
 
@@ -316,6 +318,14 @@
             background-color: hsl(var(--accent));
         }
 
+        .bullet-purple1 {
+            background-color: hsl(var(--purple1));
+        }
+
+        .bullet-yellow1 {
+            background-color: hsl(var(--yellow1));
+        }
+
         /* CTA Section */
         .cta-section {
             background: linear-gradient(to right, hsl(var(--primary) / 0.1), hsl(var(--secondary) / 0.1), hsl(var(--accent) / 0.1));
@@ -392,13 +402,12 @@
         <div class="hero-bg"></div>
         <div class="hero-gradient"></div>
         <div class="hero-content">
-            <h1>Considering buying a home battery? <br>Calculate your savings yourself!</h1>
+            <h1>Calculate Your Actual Home Battery Savings & ROI</h1>
             <p class="hero-description">
-                Discover exactly how much you'll save.<br>
-                Make your own analysis however you like; quick & simple, or in full detail.<br>
-                Calculate your actual savings and ROI.
+                Considering buying a home battery? Get unbiased, detailed forecasts before you buy.<br>
+                Make your own analysis however you like; quick & simple, or in full detail.
             </p>
-            <a href="#signup" class="btn">Keep me posted!</a>
+            <a href="#signup" class="btn">Start free analysis</a>
         </div>
     </section>
 
@@ -421,9 +430,9 @@
                                 <path d="M16 17H8"/>
                             </svg>
                         </div>
-                        <h3>Your energy contract</h3>
+                        <h3>Optimize your energy rates</h3>
                     </div>
-                    <p class="card-text">Enter your contract details for electricity rates, tariff brackets and any feed-in tariffs. Or simply upload your contract and we figure out the rest!</p>
+                    <p class="card-text">Enter electricity rates, tariff brackets, and feed-in tariffs. Or <strong>simply upload your contract, and we'll handle the rest!</strong></p>
                 </div>
 
                 <!-- Energy Consumption Card -->
@@ -435,9 +444,9 @@
                                 <path d="M34 18L22 34H32L30 46L42 30H32L34 18Z" stroke="#2E7D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </div>
-                        <h3>Your consumption</h3>
+                        <h3>Precise consumption profile</h3>
                     </div>
-                    <p class="card-text">Choose from our consumption templates that suits your profile the best. Do you have the exact consumption data? Even better! Just upload it and get more accurate & advanced insights.</p>
+                    <p class="card-text">Choose from our consumption templates that fits you the best. Have exact data? Even better! <strong>Upload it for accurate, advanced insights.</strong></p>
                 </div>
 
                 <!-- Home Address Card -->
@@ -450,13 +459,12 @@
                                 <path d="M28 44V34C28 33.4477 28.4477 33 29 33H35C35.5523 33 36 33.4477 36 34V44" stroke="#2E7D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </div>
-                        <h3>Your address</h3>
+                        <h3>Location-based estimates</h3>
                     </div>
-                    <!--
                      <p class="card-text">
-                        Already have solar panels? Enter your existing solar setup and battery quote to calculate ROI for adding storage.
+                        For the best accuracy, enter your address for specific solar estimates. Prefer privacy? Just enter your city.
                     </p>
-                    -->
+                    <!--
                     <ul class="bullet-list">
                         <li>
                             <span class="bullet bullet-primary"></span>
@@ -467,10 +475,8 @@
                             <span>Want to keep your address to yourself? Just enter your city.</span>
                         </li>
                     </ul>
-
+                    -->
                 </div>
-
-
             </div>
         </div>
     </section>
@@ -495,10 +501,10 @@
                                 <path d="M39 30H43M39 34H43M39 38H43" stroke="#E65100" stroke-width="1.5" stroke-linecap="round"/>
                             </svg>
                         </div>
-                        <h3>I want to add both solar panels and a battery to my house</h3>
+                        <h3>I want both solar panels and a battery</h3>
                     </div>
                     <p class="card-text">
-                        Enter the quote details for both, set back and relax! You'll learn everything you need to decide on your quote.
+                        Enter quote details for both, then sit back and relax! You'll learn everything you need to decide.
                     </p>
                     <!--
                     <ul class="bullet-list">
@@ -527,7 +533,7 @@
                         <h3>I only want a battery</h3>
                     </div>
                     <p class="card-text">
-                        Enter the details of both your existing solar system and the battery quote. Then again, set back, and relax!
+                        Enter details for your existing solar system and the battery quote. Then again, sit back, and relax!
                     </p>
                     <!--
                     <ul class="bullet-list">
@@ -550,8 +556,8 @@
     <section class="section-bg">
         <div class="container">
             <div class="section-header">
-                <h2>See everything you need to know</h2>
-                <p class="section-description">Everything is transparent, simply put, and tailored to you! This is a big decision, and you deserve that.</p>
+                <h2>Transparent, tailored, simply explained results.</h2>
+                <p class="section-description">This is a big decision, and you deserve truly independent insights.</p>
             </div>
             <div class="card-grid card-grid-2">
                 <div class="card card-large">
@@ -566,18 +572,18 @@
                                 <path d="M40 20H42M40 22H42" stroke="#1565C0" stroke-width="1" stroke-linecap="round"/>
                             </svg>
                         </div>
-                        <h3>Check your forecasts</h3>
+                        <h3>Accurate future performance forecasts</h3>
                     </div>
                     <p class="card-text">
-                        Your address, your consumption profile, your solar/battery system. We have everything to calculate what will really happen in the future, and that you'll get. 
+                        Your address, your consumption profile, your solar/battery system: We have everything to calculate what will <em>really</em> happen. 
                     </p>
                     <ul class="bullet-list">
                         <li>
-                            <span class="bullet bullet-primary"></span>
-                            <span>How much energy I can generate when?</span>
+                            <span class="bullet bullet-secondary"></span>
+                            <span>How much energy I can generate, and when?</span>
                         </li>
                         <li>
-                            <span class="bullet bullet-primary"></span>
+                            <span class="bullet bullet-secondary"></span>
                             <span>How effectively will I use my battery?</span>
                         </li>
                     </ul>
@@ -597,22 +603,22 @@
                                 <path d="M36 22L42 28M42 28H37M42 28V23" stroke="#2E7D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </div>
-                        <h3>See your potential savings and ROI</h3>
+                        <h3>Clear ROI & financial breakdown</h3>
                     </div>
                     <p class="card-text">
-                        Day by day, month by month, you'll be able to clearly see what you'll save, how you'll save.
+                        Day by day, month by month, clearly see what you'll save and how.
                     </p>
                     <ul class="bullet-list">
                         <li>
-                            <span class="bullet bullet-secondary"></span>
+                            <span class="bullet bullet-primary"></span>
                             <span>How much am I actually paying for grid feed-in?</span>
                         </li>
                         <li>
-                            <span class="bullet bullet-secondary"></span>
+                            <span class="bullet bullet-primary"></span>
                             <span>How might my annual savings change over the years?</span>
                         </li>
                         <li>
-                            <span class="bullet bullet-secondary"></span>
+                            <span class="bullet bullet-primary"></span>
                             <span>What is my true payback period?</span>
                         </li>
                     </ul>
@@ -635,22 +641,22 @@
                                 <path d="M40 33H37" stroke="#6A1B9A" stroke-width="1.5" stroke-linecap="round"/>
                             </svg>
                         </div>
-                        <h3>Compare different scenarios</h3>
+                        <h3>Unlimited scenario comparison</h3>
                     </div>
                     <p class="card-text">
-                        Your energy contract, consumption, production, storage: all of these can change. But it's not easy to consider all at once. Well, not until Quotiland!
+                        Your energy contract, consumption, production, storage: all can change. Now, easily compare every variable at once.
                     </p>
                     <ul class="bullet-list">
                         <li>
-                            <span class="bullet bullet-accent"></span>
+                            <span class="bullet bullet-purple1"></span>
                             <span>What if I switch to another energy contract?</span>
                         </li>
                         <li>
-                            <span class="bullet bullet-accent"></span>
+                            <span class="bullet bullet-purple1"></span>
                             <span>What if I add more panels?</span>
                         </li>
                         <li>
-                            <span class="bullet bullet-accent"></span>
+                            <span class="bullet bullet-purple1"></span>
                             <span>What if I decrease the battery capacity?</span>
                         </li>
                     </ul>
@@ -667,22 +673,22 @@
                                 <path d="M29 41H35" stroke="#F57F17" stroke-width="2" stroke-linecap="round"/>
                             </svg>
                         </div>
-                        <h3>Get expert suggestions</h3>
+                        <h3>Get independent expert suggestions</h3>
                     </div>
                     <p class="card-text">
-                        Companies aim to sell. Of course this doesn't mean that they try to deceive you, but their suggestions cannot be independent by nature. Receive independent suggestions tailored to you.
+                        Companies aim to sell. Of course this doesn't mean that they try to deceive you, but their suggestions cannot be independent by nature. Receive unbiased suggestions tailored to you.
                     </p>
                     <ul class="bullet-list">
                         <li>
-                            <span class="bullet bullet-accent"></span>
+                            <span class="bullet bullet-yellow1"></span>
                             <span>What's the correct battery size for me? Should I even have one?</span>
                         </li>
                         <li>
-                            <span class="bullet bullet-accent"></span>
+                            <span class="bullet bullet-yellow1"></span>
                             <span>How many panels should I have?</span>
                         </li>
                         <li>
-                            <span class="bullet bullet-accent"></span>
+                            <span class="bullet bullet-yellow1"></span>
                             <span>How should I use my battery?</span>
                         </li>
                     </ul>
@@ -711,13 +717,13 @@
     -->
                 <h2>All these are coming soon!</h2>
                 <p class="section-description">
-                    Are you interested? Leave us your email below. We'll keep you in the loop while working hard on delivering all of these to you.
+                    Get exclusive early access and updates: Leave us your email below. We'll keep you in the loop while working hard to deliver these to you.
                 </p>
                 <form action="https://formspree.io/f/xzzjywag" method="POST">
                     <div class="form-row">
                         <input type="email" name="email" placeholder="Enter your email" required>
                     </div>
-                    <button type="submit" class="btn">Keep me posted!</button>
+                    <button type="submit" class="btn">Notify me when live</button>
                 </form>
             </div>
         </div>
